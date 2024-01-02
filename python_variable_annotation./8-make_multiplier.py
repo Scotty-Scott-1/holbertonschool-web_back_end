@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """a module with a function that returns a functione"""
 
+
 from typing import Callable
 
 
