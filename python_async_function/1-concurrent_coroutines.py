@@ -7,7 +7,7 @@ return a list of delays (floats)
 """
 
 
-from asyncio import gather
+from asyncio import gather, sleep
 from typing import List
 wait_random = __import__('0-basic_async_syntax').wait_random
 
@@ -17,7 +17,16 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
     call wait_random n times with max_delay
     return a list of delays (floats)"""
 
-    my_list = [wait_random(max_delay) for _ in range(n)]
-    delays = await gather(*my_list)
+    async def delay() -> None:
+        """wait for the required time and append to list"""
+        delay = await wait_random(max_delay)
+        await sleep(delay)
+        result_list.append(delay)
 
-    return delays
+    result_list: List[float] = []
+
+    my_list = [delay() for _ in range(n)]
+
+    await gather(*my_list)
+
+    return result_list
