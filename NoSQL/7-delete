@@ -1,0 +1,7 @@
+// Add another attribute to all documents in the collection "school" where name = "Holberton school". New attribute: address: "972 Mission street"
+
+db.school.remove(
+        { name: "Holberton school" },
+        { justOne: false }
+)
+
