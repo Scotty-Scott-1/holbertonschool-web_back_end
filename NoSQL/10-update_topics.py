@@ -7,6 +7,6 @@ def update_topics(mongo_collection, name, topics):
 
     result = mongo_collection.update_many(
             {"name": name},
-            {"$set": {"topcis": topics}}
+            {"$set": {"topics": topics}}
     )
     return result
