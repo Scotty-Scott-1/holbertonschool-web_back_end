@@ -1,0 +1,4 @@
+// list all the documents in the collection "school" db name in command
+
+db.school.find().pretty()
+
